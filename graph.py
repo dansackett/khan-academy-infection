@@ -16,8 +16,8 @@ class UserGraph(object):
 
     def add_user(self, name, is_admin=False):
         """Add a user to the graph if they aren't already included."""
-        user = None
-        if not self.users.get(name):
+        user = self.users.get(name)
+        if not user:
             user = User(name, is_admin)
             self.users[name] = user
         return user
@@ -45,7 +45,7 @@ class UserGraph(object):
         if self.users.get(user.name):
             del self.users[user.name]
 
-    def add_connection(self, coach, student):
+    def add_connection(self, coach, student, weight=None):
         """Add a connection between a coach and a student.
 
         This connection requires two user.User objects and creates an
@@ -55,8 +55,8 @@ class UserGraph(object):
         if not isinstance(coach, User) or not isinstance(student, User):
             raise ConnectionError
 
-        coach.add_connection(student)
-        student.add_connection(coach)
+        coach.add_connection(student, weight)
+        student.add_connection(coach, weight)
 
     def remove_connection(self, coach, student):
         """Remove a connection between a coach and student.

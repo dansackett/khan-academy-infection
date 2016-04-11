@@ -17,3 +17,6 @@ class UserError(BaseError):
 
 class ConnectionError(BaseError):
     msg = "Connections must be type user.User"
+
+class FileError(BaseError):
+    msg = "File format error. Please ensure each line has space separated connections and a weight."
