@@ -14,6 +14,10 @@ class UserGraph(object):
     def __init__(self):
         self.users = {}
 
+    def size(self):
+        """Get the size of the graph"""
+        return len(self.users.keys())
+
     def add_user(self, name, is_admin=False):
         """Add a user to the graph if they aren't already included."""
         user = self.users.get(name)
@@ -25,6 +29,10 @@ class UserGraph(object):
     def add_admin(self, name):
         """Add an admin user to the graph if they aren't already included."""
         return self.add_user(name, True)
+
+    def get_user(self, name):
+        """Get a single user from the graph"""
+        return self.users.get(name)
 
     def get_all_users(self):
         """Return all users in the graph through a generator."""
