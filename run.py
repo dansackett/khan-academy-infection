@@ -1,3 +1,4 @@
+import sys
 from optparse import OptionParser
 
 from errors import FileError
@@ -10,6 +11,9 @@ from infections import (
     admin_infection,
     run_infection,
 )
+
+RED = '\033[31m'
+COLOROFF = '\033[0m'
 
 
 def add_user(graph, str):
@@ -44,6 +48,26 @@ def build_graph(file):
                 raise FileError
 
     return graph
+
+
+def infected_print(user, str):
+    """Add color codes to print output for a TTY shell"""
+    if user.site_version == 2:
+        if sys.stdout.isatty():
+            return '{red}{str}{off}'.format(red=RED, str=str, off=COLOROFF)
+        return 'X - {}'.format(str)
+    else:
+        return '{}'.format(str)
+
+
+def show_infection(graph):
+    """Show infections prints the graph representation in an adjacency list"""
+    for user in graph.get_all_users():
+        print infected_print(user, user.name) + ' ::',
+        for connection in user.get_connections():
+            name = connection.User.name
+            print infected_print(connection.User, name),
+        print
 
 
 if __name__ == '__main__':
@@ -86,6 +110,5 @@ if __name__ == '__main__':
         exit('ERROR: You must specify a maximum number of users to infect')
 
     graph = build_graph(options.data)
-    infected_users = run_infection(options, graph)
-
-    print infected_users
+    run_infection(options, graph)
+    show_infection(graph)

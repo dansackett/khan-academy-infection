@@ -34,8 +34,6 @@ def total_infection(graph, options):
             for connection in user.get_connections():
                 queue.put(connection.User)
 
-    return infected
-
 
 def exact_infection(graph, options):
     """Exact infection will infect exactly the number specified.
@@ -68,8 +66,6 @@ def exact_infection(graph, options):
 
             for connection in user.get_connections():
                 queue.put((connection.Weight, connection.User))
-
-    return infected
 
 
 def limited_infection(graph, options):
@@ -104,8 +100,6 @@ def limited_infection(graph, options):
             for connection in user.get_connections():
                 queue.put((connection.Weight, connection.User))
 
-    return infected
-
 
 def admin_infection(graph, options):
     """Admin infection ensures that admin users and their connections will be
@@ -132,8 +126,6 @@ def admin_infection(graph, options):
 
             for connection in user.get_connections():
                 queue.put(connection.User)
-
-    return infected
 
 
 def run_infection(options, graph):
