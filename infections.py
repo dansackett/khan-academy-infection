@@ -45,6 +45,7 @@ def exact_infection(graph, options):
     infected = set()
     queue = PriorityQueue()
     initial_user = graph.get_user(options.infect)
+    multiplier = 1
 
     if not initial_user:
         exit('ERROR: User not found')
@@ -65,7 +66,9 @@ def exact_infection(graph, options):
             infected.add(user)
 
             for connection in user.get_connections():
-                queue.put((connection.Weight, connection.User))
+                queue.put((-multiplier * connection.Weight, connection.User))
+
+        multiplier += 1
 
 
 def limited_infection(graph, options):
@@ -81,6 +84,7 @@ def limited_infection(graph, options):
     infected = set()
     queue = PriorityQueue()
     initial_user = graph.get_user(options.infect)
+    multiplier = 1
 
     if not initial_user:
         exit('ERROR: User not found')
@@ -98,7 +102,9 @@ def limited_infection(graph, options):
             infected.add(user)
 
             for connection in user.get_connections():
-                queue.put((connection.Weight, connection.User))
+                queue.put((-multiplier * connection.Weight, connection.User))
+
+        multiplier += 1
 
 
 def admin_infection(graph, options):
