@@ -1,6 +1,0 @@
-Teacher Student1 5
-Teacher Student2 1
-Teacher Student3 0
-Student3 Student4 10
-Student3 Student5 20
-Student5 Student6 20

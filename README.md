@@ -64,7 +64,7 @@ used in the config file will be the indentifiers for each user in the system
 and will be the key used in the `-i` command to choose an infection starting
 point.
 
-**User Types**
+**User Types:**
 User types can be specified in a config file using the following notation:
 
 ```
@@ -98,26 +98,26 @@ Options:
 Running a total infection can be done via:
 
 ```
-python run.py -t total -d data/sample1.txt -i Dan
+python run.py -t total -d data/random.txt -i user43
 ```
 
 **Limited Infection:**
 Running a limited infection can be done via:
 
 ```
-python run.py -t limited -d data/sample3.txt -i Teacher -m 3
+python run.py -t limited -d data/random.txt -i user43 -m 20
 ```
 
 **Exact Infection:**
-Running a limited infection can be done via:
+Running an exact infection can be done via:
 
 ```
-python run.py -t exact -d data/sample3.txt -i Teacher -m 5
+python run.py -t exact -d data/random.txt -i user43 -m 10
 ```
 
 **Admin Infection:**
 Running an admin infection requires admin users in the config file. It can be done via:
 
 ```
-python run.py -t admin -d data/sample2.txt
+python run.py -t admin -d data/admin.txt
 ```
